@@ -31,7 +31,24 @@ sample_dict = {
     }
 }
 
-def return_type_st(param):
+def explore(edge, fileobj, num=1):
+    for k, v in edge.items():
+        if type(v) is dict:
+            _add_tab(fileobj, num)
+            fileobj.write('{0}: {{\n'.format(k))
+            explore(v, fileobj, num + 1)
+            _add_tab(fileobj, num)
+            fileobj.write('};\n')
+        elif type(v) is list:
+            _add_tab(fileobj, num)
+            fileobj.write('{0}: Array<any>;\n'.format(k))
+        else:
+            _add_tab(fileobj, num)
+            type_st = _return_type_st(v)
+            fileobj.write('{}: {};\n'.format(k, type_st))
+
+
+def _return_type_st(param):
     typeObj = type(param)
 
     if typeObj is str:
@@ -45,24 +62,11 @@ def return_type_st(param):
 
     return "any"
 
-def explore(edge, fileobj):
-    for k, v in edge.items():
-        if type(v) is dict:
-            fileobj.write('{0}: {{\n'.format(k))
-            explore(v, fileobj)
-            fileobj.write('};\n')
-        elif type(v) is list:
-            fileobj.write('{0}: Array<any>;\n'.format(k))
-            # for item in v:
-            #     if type(item) is dict:
-            #         explore(item, fileobj)
-            #     else:
-            #         type_st = return_type_st(item)
-            # print(item)  
-            # fileobj.write('>\n'.format(k))
-        else:
-            type_st = return_type_st(v)
-            fileobj.write('{}: {};\n'.format(k, type_st))
+
+def _add_tab(fileobj, num):
+    for _ in range(num):
+        fileobj.write('\t')
+
 
 if __name__ == "__main__":
     file = "type.ts"
@@ -72,3 +76,6 @@ if __name__ == "__main__":
     explore(sample_dict, fileobj)
     fileobj.write('}\n')
     fileobj.close()
+
+
+
