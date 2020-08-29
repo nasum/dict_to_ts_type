@@ -1,1 +1,1 @@
-# dict_to_ts_type
+# py2tstype
