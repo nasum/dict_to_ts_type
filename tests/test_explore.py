@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from py2tstype import explore
 
 SAMPLE_DICT = {
@@ -33,20 +34,5 @@ SAMPLE_DICT = {
     }
 }
 
-
-
-if __name__ == "__main__":
-    file = "type.ts"
-    fileobj = open(file, "w", encoding = "utf_8")
-    fileobj.write('export type {0} = {{\n'.format('Hoge'))
-    print(SAMPLE_DICT)
-    line_list = explore(SAMPLE_DICT)
-
-    for line in line_list:
-        fileobj.write(line)
-
-    fileobj.write('}\n')
-    fileobj.close()
-
-
-
+def test_explore():
+    assert False
