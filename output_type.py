@@ -1,3 +1,4 @@
+from typing import List
 from py2tstype import explore
 
 SAMPLE_DICT = {
@@ -33,20 +34,21 @@ SAMPLE_DICT = {
     }
 }
 
+def walk_throw(node_list: List):
+    for node in node_list:
+        tab = ""
+        for _ in range(node.depth):
+            tab += " "
+        print(tab + str(node))
+        walk_throw(node.children)
 
 
 if __name__ == "__main__":
-    file = "type.ts"
-    fileobj = open(file, "w", encoding = "utf_8")
-    fileobj.write('export type {0} = {{\n'.format('Hoge'))
+    print('json')
     print(SAMPLE_DICT)
-    line_list = explore(SAMPLE_DICT)
-
-    for line in line_list:
-        fileobj.write(line)
-
-    fileobj.write('}\n')
-    fileobj.close()
+    ast = explore(SAMPLE_DICT)
+    print('ast')
+    walk_throw(ast)
 
 
 

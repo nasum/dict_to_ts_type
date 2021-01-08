@@ -1,0 +1,23 @@
+{
+  "id": 100,
+  "name": "nasum",
+  "profile": {
+    "age": 33,
+    "handleName": "nasum360",
+    "likes": ["anime", "programming"]
+  },
+  "career": [
+    {
+      "name": "JustSystems",
+      "graduation": "2015/2"
+    },
+    {
+      "name": "CrowdWorks",
+      "graduation": "2018/6"
+    },
+    {
+      "name": "LAPRAS",
+      "graduation": ""
+    }
+  ]
+}
